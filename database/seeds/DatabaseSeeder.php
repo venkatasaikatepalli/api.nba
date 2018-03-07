@@ -16,22 +16,22 @@ class DatabaseSeeder extends Seeder
     	DB::table('users')->insert([
     		'staffid' => 'PVPSITCSE1011'.rand(1111, 9999),
             'name' => 'Venkata Sai Katepalli',
-            'email' => 'venkatasa@pvpsiddhartha.ac.in',
-            'password' => '123456',
+            'email' => 'venkatasaisoft@gmail.com',
+            'password' => '$2y$10$ou3.gXPuntz4qn30..fyHeccR5irXVRXRQTzdyBFeNZmUTlyi3/bW',
+            'remember_token' => str_random(10),
         ]);
 
         for ($i=0; $i < 30; $i++) { 
-        	# code...
         	DB::table('users')->insert([
         		'staffid' => 'PVPSITCSE'.rand(1111, 9999),
 	            'name' => str_random(10),
 	            'email' => str_random(10).'@pvpsiddhartha.ac.in',
-	            'password' => '123456'
+	            'password' => '$2y$10$ou3.gXPuntz4qn30..fyHeccR5irXVRXRQTzdyBFeNZmUTlyi3/bW',
+                'remember_token' => str_random(10)
 	        ]);
         }
 
         for ($i=0; $i < 100; $i++) { 
-        	# code...
         	$user = DB::table('users')->get()->random(1);
         	DB::table('workshops')->insert([
         		'staff_id' => rand(1,30),
@@ -43,6 +43,25 @@ class DatabaseSeeder extends Seeder
 	            'description' => str_random(60),
 	            'status' => 'applied'
 	        ]);
+        }
+
+        $year = 2010;
+        $end = 11;
+        for ($i=0; $i < 10; $i++) { 
+            # code...
+            $year++;
+            $end++;
+
+            DB::table('sfrs')->insert([
+                'accademic_year' => $year.'-'.$end,
+                'ug_programs' => 1,
+                'pg_programs' => 1,
+                'ug2_students' => rand(130, 140),
+                'ug3_students' => rand(130, 140),
+                'ug4_students' => rand(130, 140),
+                'pg1_students' => rand(3, 10),
+                'pg2_students' => rand(3, 10),
+                ]);
         }
     }
 }

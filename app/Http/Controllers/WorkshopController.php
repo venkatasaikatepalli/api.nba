@@ -3,10 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\workshop;
+use DB;
+use JWTAuth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+
 
 class WorkshopController extends Controller
 {
+
+    public function __construct() {
+
+        $this->middleware('auth');
+        $this->user = JWTAuth::parseToken()->authenticate();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,8 @@ class WorkshopController extends Controller
      */
     public function index()
     {
-        //
+        $workshops = DB::table('workshops')->where('staff_id', $this->user->id)->get();
+        return $workshops;
     }
 
     /**
@@ -22,9 +34,27 @@ class WorkshopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string',
+            'des' => 'required',
+            'venue' => 'required',
+            'from'=> 'required',
+            'to'=> 'required',
+            'des'=> 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+        // Workshop::create([
+        //     'title' => $request->get('title'),
+        //     'des' => $request->get('des'),
+        // ]);
+        $user = User::first();
+        $token = JWTAuth::fromUser($user);
+        
+        return Response::json(compact('token'));
     }
 
     /**
@@ -35,7 +65,25 @@ class WorkshopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string',
+            'des' => 'required',
+            'venue' => 'required',
+            'from'=> 'required',
+            'to'=> 'required',
+            'des'=> 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+        // Workshop::create([
+        //     'title' => $request->get('title'),
+        //     'des' => $request->get('des'),
+        // ]);
+        $user = User::first();
+        $token = JWTAuth::fromUser($user);
+        
+        return Response::json(compact('token'));
     }
 
     /**

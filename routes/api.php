@@ -20,7 +20,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('login', 'AuthenticateController@login');
-// Route::get('users', 'AuthenticateController@index');
 
-Route::middleware('jwt.auth')->get('users/list', 'AuthenticateController@index');
+// workshop apis
+// Route::middleware('jwt.auth')->get('workshops', 'WorkshopController@index');
+// Route::middleware('jwt.auth')->post('new_workshop', 'WorkshopController@create');
+// Route::middleware('jwt.auth')->post('edit_workshop', 'WorkshopController@create');
+
+Route::group(['prefix' => 'staff'], function () {
+	Route::ApiResource('workshop', 'WorkshopController');
+});
+
+Route::group(['prefix' => 'role'], function () {
+	Route::ApiResource('sfr', 'SfrController');
+});
 
