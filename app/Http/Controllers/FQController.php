@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use DB;
 use JWTAuth;
-use App\reports\sfr;
+use App\reports\FQ;
 use Illuminate\Http\Request;
 
-class SfrController extends Controller
+class FQController extends Controller
 {   
     public function __construct() {
 
@@ -21,8 +21,9 @@ class SfrController extends Controller
      */
     public function index()
     {
-        $data['sfr'] = DB::table('sfrs')->get();
-        $data['staff_count'] = DB::table('users')->count();
+        $data = DB::table('users')->select('qualification', DB::raw('count(*) as total'))
+                 ->groupBy('qualification')
+                 ->get();
         return $data;
     }
 
@@ -50,10 +51,10 @@ class SfrController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\reports\sfr  $sfr
+     * @param  \App\reports\FQ  $FQ
      * @return \Illuminate\Http\Response
      */
-    public function show(sfr $sfr)
+    public function show(FQ $FQ)
     {
         //
     }
@@ -61,10 +62,10 @@ class SfrController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\reports\sfr  $sfr
+     * @param  \App\reports\FQ  $FQ
      * @return \Illuminate\Http\Response
      */
-    public function edit(sfr $sfr)
+    public function edit(FQ $FQ)
     {
         //
     }
@@ -73,10 +74,10 @@ class SfrController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\reports\sfr  $sfr
+     * @param  \App\reports\FQ  $FQ
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, sfr $sfr)
+    public function update(Request $request, FQ $FQ)
     {
         //
     }
@@ -84,10 +85,10 @@ class SfrController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\reports\sfr  $sfr
+     * @param  \App\reports\FQ  $FQ
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sfr $sfr)
+    public function destroy(FQ $FQ)
     {
         //
     }

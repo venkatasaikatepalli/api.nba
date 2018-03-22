@@ -11,23 +11,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $des = ['Asst Professor', 'Associate Professor', 'Professor'];
+        $qualifications = ['M.Tech', 'Phd'];
 
     	DB::table('users')->insert([
-    		'staffid' => 'PVPSITCSE1011'.rand(1111, 9999),
+    		'staffid' => 'PVPSITCSE'.rand(1111, 9999),
             'name' => 'Venkata Sai Katepalli',
             'email' => 'venkatasaisoft@gmail.com',
             'password' => '$2y$10$ou3.gXPuntz4qn30..fyHeccR5irXVRXRQTzdyBFeNZmUTlyi3/bW',
             'remember_token' => str_random(10),
+            'designation' => $des[0],
+            'qualification' => $qualifications[rand(0,1)],
+            'doj' => rand(1999, 2020).'-'.rand(1, 12).'-'.rand(1,28),
         ]);
 
         for ($i=0; $i < 30; $i++) { 
-        	DB::table('users')->insert([
-        		'staffid' => 'PVPSITCSE'.rand(1111, 9999),
-	            'name' => str_random(10),
-	            'email' => str_random(10).'@pvpsiddhartha.ac.in',
-	            'password' => '$2y$10$ou3.gXPuntz4qn30..fyHeccR5irXVRXRQTzdyBFeNZmUTlyi3/bW',
-                'remember_token' => str_random(10)
+            DB::table('users')->insert([
+                'staffid' => 'PVPSITCSE'.rand(1111, 9999),
+                'name' => str_random(10),
+                'email' => str_random(10).'@pvpsiddhartha.ac.in',
+                'password' => '$2y$10$ou3.gXPuntz4qn30..fyHeccR5irXVRXRQTzdyBFeNZmUTlyi3/bW',
+                'remember_token' => str_random(10),
+                'designation' => $des[rand(1,2)],
+                'qualification' => $qualifications[rand(0,1)],
+                'doj' => rand(1999, 2020).'-'.rand(1, 12).'-'.rand(1,28),
 	        ]);
         }
 
@@ -59,8 +66,8 @@ class DatabaseSeeder extends Seeder
                 'ug2_students' => rand(130, 140),
                 'ug3_students' => rand(130, 140),
                 'ug4_students' => rand(130, 140),
-                'pg1_students' => rand(3, 10),
-                'pg2_students' => rand(3, 10),
+                'pg1_students' => rand(7, 15),
+                'pg2_students' => rand(6, 15),
                 ]);
         }
     }
