@@ -70,9 +70,9 @@ class DatabaseSeeder extends Seeder
 
     // workshops
     for ($i=0; $i < 100; $i++) { 
-    	$user = DB::table('users')->get()->random(1);
-    	DB::table('workshops')->insert([
-    		'staff_id' => rand(1,30),
+      $user = DB::table('users')->get()->random(1);
+      DB::table('workshops')->insert([
+        'staff_id' => rand(1,30),
         'title' => str_random(30),
         'venue' => 'vijayawada',
         'from' => '2018-01-'.rand(1,12),
@@ -80,6 +80,18 @@ class DatabaseSeeder extends Seeder
         'applied_on' => '2018-'.rand(2,11).'-11',
         'description' => str_random(60),
         'status' => 'applied'
+      ]);
+    }
+
+    // workloads
+    for ($i=0; $i < 100; $i++) { 
+    	$user = DB::table('users')->get()->random(1);
+    	DB::table('workloads')->insert([
+    		'staff_id' => rand(1, 30),
+        'year' => rand(2005, 2019),
+        'first_year' => 30,
+        'ug' => 40,
+        'pg' => 30,
       ]);
     }
 
@@ -122,6 +134,14 @@ class DatabaseSeeder extends Seeder
       'staff_id' => 'PVPSITCSE4012',
       'status' => 'Active'
     ]);
+
+    for ($i=03; $i < 20; $i++) { 
+      # code...
+      DB::table('academicyears')->insert([
+        'year' => 2000 + $i,
+        'label' => 2000 + $i.'-'.$i
+      ]);
+    }
     // INSERT INTO `roles` (`id`, `title`, `url`, `staff_id`, `status`) VALUES (NULL, 'Workshop', '/role/workshop', 'PVPSITCSE4074', 'active');
   }
 }

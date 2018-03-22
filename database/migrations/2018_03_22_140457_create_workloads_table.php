@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDesignationsTable extends Migration
+class CreateWorkloadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateDesignationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('designations', function (Blueprint $table) {
+        Schema::create('workloads', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Designation_Name');
-            $table->string('Designation_Value');
+            $table->string('staff_id');
+            $table->string('year');
+            $table->decimal('first_year',8,2);
+            $table->decimal('ug',8,2);
+            $table->decimal('pg',8,2);
         });
     }
 
@@ -27,6 +30,6 @@ class CreateDesignationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('designations');
+        Schema::dropIfExists('workloads');
     }
 }

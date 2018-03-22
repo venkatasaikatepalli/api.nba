@@ -37,4 +37,5 @@ Route::group(['prefix' => 'reports'], function () {
 });
 
 Route::get('stafflist', 'CustomController@staffList');
+Route::ApiResource('academicyears', 'AcademicyearController');
 
