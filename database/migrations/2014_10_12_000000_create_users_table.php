@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->date('doj');
             $table->string('user_type');
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 

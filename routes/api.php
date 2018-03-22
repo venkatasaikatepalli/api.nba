@@ -26,8 +26,15 @@ Route::group(['prefix' => 'staff'], function () {
 	Route::ApiResource('workshop', 'WorkshopController');
 });
 
+Route::group(['prefix' => 'admin'], function () {
+	Route::get('roles', 'RoleController@index');
+	Route::post('roles', 'RoleController@update');
+});
+
 Route::group(['prefix' => 'reports'], function () {
 	Route::ApiResource('sfr', 'SfrController');
 	Route::get('faculty-qualification', 'FQController@index');
 });
+
+Route::get('stafflist', 'CustomController@staffList');
 

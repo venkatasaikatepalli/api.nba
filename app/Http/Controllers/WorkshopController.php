@@ -117,11 +117,11 @@ class WorkshopController extends Controller
      */
     public function update(Request $request, workshop $workshop)
     {   
-        DB::table('workshops')->where('id', $workshop->id)->update([
-            'title' => $workshop['title']
-            ]where('id', $workshop->id)->);
-        $data = DB::table('workshops')->where('id', $workshop->id)->get();
-        return $data;
+        // DB::table('workshops')->where('id', $workshop->id)->update([
+        //     'title' => $workshop['title']
+        //     ]where('id', $workshop->id)->);
+        // $data = DB::table('workshops')->where('id', $workshop->id)->get();
+        // return $data;
     }
 
     /**

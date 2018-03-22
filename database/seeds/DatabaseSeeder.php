@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
    */
   public function run()
   {
+    $faker = Faker\Factory::create();
     // designations
     DB::table('designations')->insert([
       'Designation_Name' => 'Associate Professor',
@@ -42,7 +43,7 @@ class DatabaseSeeder extends Seeder
 
     // users
   	DB::table('users')->insert([
-  		'staffid' => 'PVPSITCSE'.rand(1111, 9999),
+  		'staffid' => 'PVPSITCSE4012',
       'name' => 'Venkata Sai Katepalli',
       'email' => 'venkatasaisoft@gmail.com',
       'password' => '$2y$10$ou3.gXPuntz4qn30..fyHeccR5irXVRXRQTzdyBFeNZmUTlyi3/bW',
@@ -56,7 +57,7 @@ class DatabaseSeeder extends Seeder
     for ($i=0; $i < 30; $i++) { 
       DB::table('users')->insert([
         'staffid' => 'PVPSITCSE'.rand(1111, 9999),
-        'name' => str_random(10),
+        'name' => $faker->name,
         'email' => str_random(10).'@pvpsiddhartha.ac.in',
         'password' => '$2y$10$ou3.gXPuntz4qn30..fyHeccR5irXVRXRQTzdyBFeNZmUTlyi3/bW',
         'remember_token' => str_random(10),
@@ -102,5 +103,25 @@ class DatabaseSeeder extends Seeder
         'pg2_students' => rand(6, 15),
       ]);
     }
+
+    DB::table('roles')->insert([
+      'title' => 'Workshop',
+      'url' => '/role/workshop',
+      'staff_id' => 'PVPSITCSE4012',
+      'status' => 'Active'
+    ]);
+    DB::table('roles')->insert([
+      'title' => 'Publications',
+      'url' => '/role/publications',
+      'staff_id' => 'PVPSITCSE4012',
+      'status' => 'Active'
+    ]);
+    DB::table('roles')->insert([
+      'title' => 'WorkLoad',
+      'url' => '/role/workload',
+      'staff_id' => 'PVPSITCSE4012',
+      'status' => 'Active'
+    ]);
+    // INSERT INTO `roles` (`id`, `title`, `url`, `staff_id`, `status`) VALUES (NULL, 'Workshop', '/role/workshop', 'PVPSITCSE4074', 'active');
   }
 }
